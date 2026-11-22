@@ -1,0 +1,17 @@
+# LAB ONLY: maps site names to the local QEMU VMs. deploy.sh picks this up automatically.
+# Paths are relative to the repo root (deploy.sh runs from there).
+Host site-a
+  HostName 127.0.0.1
+  Port 2221
+
+Host site-b
+  HostName 127.0.0.1
+  Port 2222
+
+Host site-*
+  User root
+  IdentityFile lab/lab-key
+  IdentitiesOnly yes
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  LogLevel ERROR
