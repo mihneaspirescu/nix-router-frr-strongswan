@@ -295,6 +295,8 @@ The same applies to BGP: its TCP/179 packets between `10.255.0.0` and `10.255.0.
 
 > **If you want EVPN later:** it would be a new layer between 2 and 3. Each site would get a VTEP (VXLAN), the BGP session would carry the `l2vpn evpn` address family, and the VXLAN packets would be routed through `ipsec0`. The IPsec layer, the VRF separation and the fail-closed behaviour would all stay as they are. The cost is a smaller MTU, because of the extra 50 bytes of VXLAN overhead.
 
+> **Running on Linux KVM** (router VM plus a Kubernetes VM in red): see [`docs/kvm-linux.md`](docs/kvm-linux.md) for the changes needed and the network design.
+
 ## Building the router image with Nix
 
 The image is a UEFI raw disk built with NixOS's `systemd-repart` image builder ([`modules/image.nix`](modules/image.nix)):
@@ -465,4 +467,5 @@ lab/lan/Dockerfile      the LAN switch container
 lab/test.sh             end-to-end checks
 lab/ssh_config          site name -> local VM port
 note.md                 storage/cleanup notes from the last lab run
+docs/kvm-linux.md       design: Linux KVM host, router VM + k8s VM
 ```
